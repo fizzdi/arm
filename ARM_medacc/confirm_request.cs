@@ -84,6 +84,12 @@ namespace ARM_medacc
             string insertcommand = "insert into materials (description, measure, amount, region, ftp, request) values (";
             string updatecommand = "update materials set ";
 
+            int ins = 0;
+            int upd = 0;
+            while (tmater.Read())
+            {
+
+            }
 
             insertcommand += ")";
             updatecommand += " where ";

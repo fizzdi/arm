@@ -152,9 +152,9 @@ namespace ARM_medacc
             }
             for (int i = 0; i < dgv_table.RowCount - 1; ++i)
             {
-                command.CommandText = string.Format("INSERT INTO `temp_materials` (`id`, `description`, `measure`, `amount`, `region`, `frp`, `status`, `request`) VALUES (NULL, {0}, '{1}', '{2}', {3}, '{4}', {5}, {6}, {7});",
+                command.CommandText = string.Format("INSERT INTO `temp_materials` (`id`, `description`, `measure`, `amount`, `region`, `frp`, `request`) VALUES (NULL, {0}, '{1}', '{2}', {3}, '{4}', {5}, {6});",
                     dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_measure.Index].Value, dgv_table.Rows[i].Cells[col_count.Index].Value, 
-                    dgv_table.Rows[i].Cells[col_region.Index].Value, (Owner as main_form).user_id, 0, num);
+                    dgv_table.Rows[i].Cells[col_region.Index].Value, (Owner as main_form).user_id, num);
                 command.ExecuteNonQuery();
             }
             command.CommandText = string.Format("INSERT INTO `requests` (`code`, `status`, `frp`, `type`) VALUES('{0}', 0, {1}, {2});", num, (Owner as main_form).user_id, (rb_type_get.Checked ? 1 : 0));
