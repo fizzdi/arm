@@ -97,12 +97,11 @@ namespace ARM_medacc
                 com.CommandText = string.Format("delete from temp_materials where request = '{0}' and frp = {1} and region = '{2}' and measure = '{3}' and description = '{4}'", req, frp, region, meas, descr);
                 com.ExecuteNonQuery();
             }
-
-
+            tmater.Close();
             connect.Close();
             Close();
         }
-
+         
         private void button2_Click(object sender, EventArgs e)
         {
             MySqlCommand command = new MySqlCommand("update requests set status = 2 where code = " + req, connect);
