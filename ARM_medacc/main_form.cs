@@ -96,6 +96,7 @@ namespace ARM_medacc
             bt_unregister.Show();
             bt_appoint.Show();
             bt_report.Show();
+            but_confirm_request.Show();
         }
 
         private void frp() //financially responsible person
@@ -157,6 +158,13 @@ namespace ARM_medacc
         private void bt_show_materials_Click(object sender, EventArgs e)
         {
             show_materials_mol frm = new show_materials_mol(connect);
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
+
+        private void but_confirm_request_Click(object sender, EventArgs e)
+        {
+            select_confirm_request frm = new select_confirm_request(connect);
             frm.Owner = this;
             frm.ShowDialog();
         }
