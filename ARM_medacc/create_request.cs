@@ -130,12 +130,14 @@ namespace ARM_medacc
             List<List<object>> list_base = new List<List<object>>();
             while (data.Read())
             {
-                List<object> cur_mat = new List<object>(4);
-                cur_mat[0] = data.GetString("description");
-                cur_mat[1] = data.GetInt32("amount");
-                cur_mat[2] = data.GetString("region");
-                cur_mat[3] = data.GetString("measure");
+                List<object> cur_mat = new List<object>();
+                cur_mat.Add(data.GetString("description"));
+                cur_mat.Add(data.GetInt32("amount"));
+                cur_mat.Add(data.GetString("region"));
+                cur_mat.Add(data.GetString("measure"));
+                list_base.Add(cur_mat);
             }
+            data.Close();
 
             for (int i = 0; i < dgv_table.Rows.Count - 1; ++i)
             {
@@ -192,15 +194,14 @@ namespace ARM_medacc
             }
 
 
-            command.CommandText = "select code from requests order by id desc limit 1";
-            common.open_connect(connect);
+            MySqlCommand command2 = new MySqlCommand("select code from requests order by id desc limit 1", connect);
             int num = 0;
             if (req == 0)
             {
-                MySqlDataReader code_reader = command.ExecuteReader();
-                if (data.Read())
-                    num = data.GetInt32("code");
-                data.Close();
+                MySqlDataReader code_reader = command2.ExecuteReader();
+                if (code_reader.Read())
+                    num = code_reader.GetInt32("code");
+                code_reader.Close();
                 num++;
             }
             else

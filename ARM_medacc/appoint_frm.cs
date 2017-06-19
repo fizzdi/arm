@@ -22,8 +22,8 @@ namespace ARM_medacc
 
         private void appoint_frm_Load(object sender, EventArgs e)
         {
-            string commandtext = "select * from materials where frp = " + (Owner as main_form).user_id;
-                        common.open_connect(connect);
+            string commandtext = "select * from materials";
+            common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
             var source = new AutoCompleteStringCollection();
@@ -38,7 +38,7 @@ namespace ARM_medacc
                 i++;
             }
             data.Close();
-                        common.close_connect(connect);
+            common.close_connect(connect);
         }
     }
 }
