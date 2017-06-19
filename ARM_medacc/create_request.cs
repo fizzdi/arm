@@ -170,7 +170,7 @@ namespace ARM_medacc
                 }
                 if (rb_type_set.Checked) continue;
 
-                command.CommandText = string.Format("select amount from materials where description = {0} and region = {1} and measure = {2} and frp = {3}",
+                command.CommandText = string.Format("select amount from materials where description = '{0}' and region = '{1}' and measure = '{2}' and frp = {3}",
                     dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
                     dgv_table.Rows[i].Cells[col_measure.Index].Value, (Owner as main_form).user_id);
                 MySqlDataReader data2 = command.ExecuteReader();

@@ -25,7 +25,7 @@ namespace ARM_medacc
         {
             common.open_connect(connect);
             List<string> mols = new List<string>();
-            MySqlCommand molcommand = new MySqlCommand("select id, concat(last_name, \" \", name, \" \", patronymic) as mol from users", connect);
+            MySqlCommand molcommand = new MySqlCommand("select id, concat(last_name, \" \", name, \" \", patronymic) as mol from users where role_id = 2", connect);
             MySqlDataReader molread = molcommand.ExecuteReader();
 
             while (molread.Read())

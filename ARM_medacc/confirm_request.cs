@@ -27,7 +27,7 @@ namespace ARM_medacc
         private void confirm_request_Load(object sender, EventArgs e)
         {
             string commandtext = "select * from `temp_materials` where request = " + req;
-                        common.open_connect(connect);
+            common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
             var source = new AutoCompleteStringCollection();
@@ -68,24 +68,33 @@ namespace ARM_medacc
                 }
             }
             data.Close();
-                        common.close_connect(connect);
+            common.close_connect(connect);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             MySqlCommand command = new MySqlCommand("update requests set status = 1 where code = " + req, connect);
-                        common.open_connect(connect);
+            common.open_connect(connect);
             command.ExecuteNonQuery();
             MessageBox.Show("Заявка #" + req + " утверждена!");
 
             command.CommandText = "select * from temp_materials where request = " + req;
             MySqlDataReader tmater = command.ExecuteReader();
-
+            List<List<string>> maters = new List<List<string>>();
             while (tmater.Read())
             {
-                string descr = tmater.GetString("description");
-                string meas = tmater.GetString("description");
-                string region = tmater.GetString("description");
+                List<string> tmp = new List<string>();
+                tmp.Add(tmater.GetString("description"));
+                tmp.Add(tmater.GetString("measure"));
+                tmp.Add(tmater.GetString("region"));
+                maters.Add(tmp);
+            }
+            tmater.Close();
+            for (int i = 0; i < maters.Count; ++i)
+            {
+                string descr = maters[i][0];
+                string meas = maters[i][1];
+                string region = maters[i][2];
                 MySqlCommand com = new MySqlCommand(string.Format("update materials set amount = amount{0}{1} where descripton = '{2}' and measure = '{3}' and region = '{4}'",
                     (rb_type_get.Checked ? "+" : "-"), tmater.GetInt32("amount"), descr, meas, region), connect);
                 if (com.ExecuteNonQuery() == 0)
@@ -97,18 +106,17 @@ namespace ARM_medacc
                 com.CommandText = string.Format("delete from temp_materials where request = '{0}' and frp = {1} and region = '{2}' and measure = '{3}' and description = '{4}'", req, frp, region, meas, descr);
                 com.ExecuteNonQuery();
             }
-            tmater.Close();
-                        common.close_connect(connect);
+            common.close_connect(connect);
             Close();
         }
-         
+
         private void button2_Click(object sender, EventArgs e)
         {
             MySqlCommand command = new MySqlCommand("update requests set status = 2 where code = " + req, connect);
-                        common.open_connect(connect);
+            common.open_connect(connect);
             command.ExecuteNonQuery();
             MessageBox.Show("Заявка #" + req + " отклонена!");
-                        common.close_connect(connect);
+            common.close_connect(connect);
             Close();
         }
     }
