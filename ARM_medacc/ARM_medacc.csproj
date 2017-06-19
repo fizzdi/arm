@@ -66,6 +66,18 @@
     <Compile Include="create_request.Designer.cs">
       <DependentUpon>create_request.cs</DependentUpon>
     </Compile>
+    <Compile Include="correct_request.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="correct_request.Designer.cs">
+      <DependentUpon>correct_request.cs</DependentUpon>
+    </Compile>
+    <Compile Include="show_materials_mol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="show_materials_mol.Designer.cs">
+      <DependentUpon>show_materials_mol.cs</DependentUpon>
+    </Compile>
     <Compile Include="test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +112,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="create_request.resx">
       <DependentUpon>create_request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="correct_request.resx">
+      <DependentUpon>correct_request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="show_materials_mol.resx">
+      <DependentUpon>show_materials_mol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="test.resx">
       <DependentUpon>test.cs</DependentUpon>

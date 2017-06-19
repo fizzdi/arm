@@ -146,5 +146,19 @@ namespace ARM_medacc
             frm.Owner = this;
             frm.ShowDialog();
         }
+
+        private void bt_edit_request_Click(object sender, EventArgs e)
+        {
+            correct_request frm = new correct_request(connect);
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
+
+        private void bt_show_materials_Click(object sender, EventArgs e)
+        {
+            show_materials_mol frm = new show_materials_mol(connect);
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
     }
 }

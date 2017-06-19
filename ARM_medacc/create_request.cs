@@ -14,10 +14,12 @@ namespace ARM_medacc
     public partial class create_request : Form
     {
         MySqlConnection connect;
-        public create_request(MySqlConnection connect)
+        int req = 0;
+        public create_request(MySqlConnection connect, int req = 0)
         {
             InitializeComponent();
             this.connect = connect;
+            this.req = req;
         }
 
         private void dgv_table_CellValidated(object sender, DataGridViewCellEventArgs e)
@@ -30,8 +32,35 @@ namespace ARM_medacc
 
         private void create_request_Load(object sender, EventArgs e)
         {
-            var date = DateTime.Now;
-            tb_date.Text = string.Format("{0}-{1}-{2}", (date.Day < 10 ? "0" : "") + date.Day, (date.Month < 10 ? "0" : "") + date.Month, date.Year);
+            if (req == 0) return;
+
+            string commandtext = "select * from materials where request = " + req;
+            connect.Open();
+            MySqlCommand command = new MySqlCommand(commandtext, connect);
+            MySqlDataReader data = command.ExecuteReader();
+            var source = new AutoCompleteStringCollection();
+            int i = 0;
+            while (data.Read())
+            {
+                dgv_table.Rows.Add();
+                dgv_table.Rows[i].Cells[col_code.Index].Value = data.GetString("code");
+                dgv_table.Rows[i].Cells[col_material.Index].Value = data.GetString("description");
+                dgv_table.Rows[i].Cells[col_count.Index].Value = data.GetString("amount");
+                dgv_table.Rows[i].Cells[col_region.Index].Value = data.GetString("region");
+                dgv_table.Rows[i].Cells[col_measure.Index].Value = data.GetString("measure");
+                i++;
+            }
+            data.Close();
+            command.CommandText = "select * from requests where code = " + req;
+            data = command.ExecuteReader();
+            if (data.Read())
+            {
+                if (data.GetInt32("type") == 0)
+                    rb_type_set.Checked = true;
+                else rb_type_get.Checked = true;
+            } 
+            data.Close();
+            connect.Close();
         }
 
         private void dgv_table_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -124,14 +153,25 @@ namespace ARM_medacc
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int num = 0;
-            connect.Open();
             MySqlCommand command = new MySqlCommand("select code from requests order by id desc limit 1", connect);
-            MySqlDataReader data = command.ExecuteReader();
-            if (data.Read())
-                num = data.GetInt32("code");
-            data.Close();
-            num++;
+            connect.Open();
+            int num = 0;
+            if (req == 0)
+            {
+                MySqlDataReader data = command.ExecuteReader();
+                if (data.Read())
+                    num = data.GetInt32("code");
+                data.Close();
+                num++;
+            }
+            else
+            {
+                num = req;
+                command.CommandText = string.Format("DELETE FROM `materials` WHERE `request` = {0}", num);
+                command.ExecuteNonQuery();
+                command.CommandText = string.Format("DELETE FROM `requests` WHERE `code` = {0}", num);
+                command.ExecuteNonQuery();
+            }
             for (int i = 0; i < dgv_table.RowCount - 1; ++i)
             {
                 command.CommandText = string.Format("INSERT INTO `materials` (`id`, `code`, `description`, `measure`, `amount`, `region`, `frp`, `status`, `request`) VALUES (NULL, {0}, '{1}', '{2}', {3}, '{4}', {5}, {6}, {7});",
@@ -139,13 +179,16 @@ namespace ARM_medacc
                     dgv_table.Rows[i].Cells[col_measure.Index].Value, dgv_table.Rows[i].Cells[col_count.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value, (Owner as main_form).user_id, 0, num);
                 command.ExecuteNonQuery();
             }
-            command.CommandText = string.Format("INSERT INTO `requests` (`code`, `status`, `frp`, `type`) VALUES('{0}', 0, {1}, {2});", num, (Owner as main_form).user_id, (rb_type_get.Checked ? 1: 0));
+            command.CommandText = string.Format("INSERT INTO `requests` (`code`, `status`, `frp`, `type`) VALUES('{0}', 0, {1}, {2});", num, (Owner as main_form).user_id, (rb_type_get.Checked ? 1 : 0));
             command.ExecuteNonQuery();
 
             connect.Close();
             dgv_table.Rows.Clear();
 
-            MessageBox.Show("Заявка #" + num + " успешно добавлена!");
+            if (req == 0)
+                MessageBox.Show("Заявка #" + num + " успешно добавлена!");
+            else MessageBox.Show("Заявка #" + num + " успешно изменена!");
+            Close();
         }
 
         private void dgv_table_CellEndEdit(object sender, DataGridViewCellEventArgs e)

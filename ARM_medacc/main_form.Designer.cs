@@ -175,6 +175,7 @@
             this.bt_edit_request.TabIndex = 8;
             this.bt_edit_request.Text = "Корректировать заявку";
             this.bt_edit_request.UseVisualStyleBackColor = true;
+            this.bt_edit_request.Click += new System.EventHandler(this.bt_edit_request_Click);
             // 
             // bt_show_materials
             // 
@@ -184,6 +185,7 @@
             this.bt_show_materials.TabIndex = 9;
             this.bt_show_materials.Text = "Посмотреть материальные запасы";
             this.bt_show_materials.UseVisualStyleBackColor = true;
+            this.bt_show_materials.Click += new System.EventHandler(this.bt_show_materials_Click);
             // 
             // main_form
             // 
