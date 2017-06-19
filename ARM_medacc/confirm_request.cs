@@ -80,7 +80,7 @@ namespace ARM_medacc
             MessageBox.Show("Заявка #" + req + " утверждена!");
 
             //обработка материалов
-
+            connect.Close();
             Close();
         }
 
@@ -90,6 +90,7 @@ namespace ARM_medacc
             connect.Open();
             command.ExecuteNonQuery();
             MessageBox.Show("Заявка #" + req + " отклонена!");
+            connect.Close();
             Close();
         }
     }
