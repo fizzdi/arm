@@ -167,6 +167,7 @@ namespace ARM_medacc
             select_confirm_request frm = new select_confirm_request(connect);
             frm.Owner = this;
             frm.ShowDialog();
+  
         }
     }
 }

@@ -148,8 +148,8 @@
             this.cb_grant.FormattingEnabled = true;
             this.cb_grant.Items.AddRange(new object[] {
             "Администратор",
-            "Бухгалтер",
-            "Материально ответственное лицо"});
+            "Материально ответственное лицо",
+            "Бухгалтер"});
             this.cb_grant.Location = new System.Drawing.Point(121, 143);
             this.cb_grant.Name = "cb_grant";
             this.cb_grant.Size = new System.Drawing.Size(151, 21);

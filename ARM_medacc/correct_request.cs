@@ -43,6 +43,7 @@ namespace ARM_medacc
             create_request frm = new create_request(connect, int.Parse((string)lb_reqs.SelectedItem));
             frm.Owner = Owner;
             frm.ShowDialog();
+            correct_request_Load(sender, e);
         }
     }
 }

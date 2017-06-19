@@ -74,7 +74,7 @@ namespace ARM_medacc
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlCommand command = new MySqlCommand("update requests set status = 1", connect);
+            MySqlCommand command = new MySqlCommand("update requests set status = 1 where code = " + req, connect);
             connect.Open();
             command.ExecuteNonQuery();
             MessageBox.Show("Заявка #" + req + " утверждена!");
@@ -86,7 +86,7 @@ namespace ARM_medacc
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MySqlCommand command = new MySqlCommand("update requests set status = 2", connect);
+            MySqlCommand command = new MySqlCommand("update requests set status = 2 where code = " + req, connect);
             connect.Open();
             command.ExecuteNonQuery();
             MessageBox.Show("Заявка #" + req + " отклонена!");
