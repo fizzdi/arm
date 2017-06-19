@@ -28,6 +28,7 @@ namespace ARM_medacc
 
         private void correct_request_Load(object sender, EventArgs e)
         {
+            lb_reqs.Items.Clear();
             string commandtext = string.Format("select * from requests where frp = {0} and status = 2", (Owner as main_form).user_id);
                         common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
@@ -52,7 +53,7 @@ namespace ARM_medacc
             if (index != ListBox.NoMatches)
             {
                 lb_reqs.SelectedIndex = index;
-                correct_request_Load(sender, e);
+                but_edit_Click(sender, e);
             }
         }
     }

@@ -14,6 +14,7 @@ namespace ARM_medacc
     public partial class appoint_frm : Form
     {
         MySqlConnection connect;
+        List<String> oldmol = new List<string>();
         public appoint_frm(MySqlConnection connect)
         {
             InitializeComponent();
@@ -46,6 +47,7 @@ namespace ARM_medacc
                 dgv_table.Rows[i].Cells[col_measure.Index].Value = data.GetString("measure");
                 dgv_table.Rows[i].Cells[col_mol.Index].Value = data.GetString("mol");
                 var cb = (dgv_table.Rows[i].Cells[col_mol.Index] as DataGridViewComboBoxCell);
+                oldmol.Add(dgv_table.Rows[i].Cells[col_mol.Index].Value.ToString());
                 cb.Items.AddRange(mols.ToArray());
                 i++;
             }
@@ -58,8 +60,12 @@ namespace ARM_medacc
             common.open_connect(connect);
             for (int i = 0; i < dgv_table.Rows.Count; ++i)
             {
-                MySqlCommand molcommand = new MySqlCommand("select id, concat(last_name, \" \", name, \" \", patronymic) as mol from users", connect);
-                MySqlDataReader molread = molcommand.ExecuteReader();
+                MySqlCommand molcommand = new MySqlCommand(
+                    string.Format("UPDATE `materials` SET `frp`= (select id from users where concat(last_name, \" \", name, \" \", patronymic) = '{3}' limit 1) where description = '{0}' and region = '{1}' and measure = '{2}' and frp = (select id from users where concat(last_name, \" \", name, \" \", patronymic) = '{4}' limit 1)",
+                    dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
+                     dgv_table.Rows[i].Cells[col_measure.Index].Value, (dgv_table.Rows[i].Cells[col_mol.Index] as DataGridViewComboBoxCell).Value, oldmol[i]), connect);
+
+                molcommand.ExecuteNonQuery();
             }
 
             common.close_connect(connect);
