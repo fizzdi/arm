@@ -27,7 +27,7 @@ namespace ARM_medacc
             if (req == 0) return;
 
             string commandtext = "select * from `temp_materials` where request = " + req;
-            connect.Open();
+            common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
             var source = new AutoCompleteStringCollection();
@@ -51,7 +51,7 @@ namespace ARM_medacc
                 else rb_type_get.Checked = true;
             }
             data.Close();
-            connect.Close();
+            common.close_connect(connect);
         }
 
         private void dgv_table_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -62,13 +62,13 @@ namespace ARM_medacc
                 if (txt != null)
                 {
                     string commandtext = "select distinct description from materials";
-                    connect.Open();
+                    common.open_connect(connect);
                     MySqlCommand command = new MySqlCommand(commandtext, connect);
                     MySqlDataReader data = command.ExecuteReader();
                     var source = new AutoCompleteStringCollection();
                     while (data.Read())
                         source.Add(data.GetString("description"));
-                    connect.Close();
+                    common.close_connect(connect);
                     data.Close();
 
                     txt.AutoCompleteMode = AutoCompleteMode.Append;
@@ -83,13 +83,13 @@ namespace ARM_medacc
                 if (txt != null)
                 {
                     string commandtext = "select distinct region from materials";
-                    connect.Open();
+                    common.open_connect(connect);
                     MySqlCommand command = new MySqlCommand(commandtext, connect);
                     MySqlDataReader data = command.ExecuteReader();
                     var source = new AutoCompleteStringCollection();
                     while (data.Read())
                         source.Add(data.GetString("region"));
-                    connect.Close();
+                    common.close_connect(connect);
                     data.Close();
 
                     txt.AutoCompleteMode = AutoCompleteMode.Append;
@@ -104,13 +104,13 @@ namespace ARM_medacc
                 if (txt != null)
                 {
                     string commandtext = "select distinct measure from materials";
-                    connect.Open();
+                    common.open_connect(connect);
                     MySqlCommand command = new MySqlCommand(commandtext, connect);
                     MySqlDataReader data = command.ExecuteReader();
                     var source = new AutoCompleteStringCollection();
                     while (data.Read())
                         source.Add(data.GetString("measure"));
-                    connect.Close();
+                    common.close_connect(connect);
                     data.Close();
 
                     txt.AutoCompleteMode = AutoCompleteMode.Append;
@@ -123,6 +123,7 @@ namespace ARM_medacc
 
         private void button1_Click(object sender, EventArgs e)
         {
+            common.open_connect(connect);
             MySqlCommand command = new MySqlCommand("select * from materials where frp = " + (Owner as main_form).user_id, connect);
             dgv_table.EndEdit();
             MySqlDataReader data = command.ExecuteReader();
@@ -192,7 +193,7 @@ namespace ARM_medacc
 
 
             command.CommandText = "select code from requests order by id desc limit 1";
-            connect.Open();
+            common.open_connect(connect);
             int num = 0;
             if (req == 0)
             {
@@ -220,7 +221,7 @@ namespace ARM_medacc
             command.CommandText = string.Format("INSERT INTO `requests` (`code`, `status`, `frp`, `type`) VALUES('{0}', 0, {1}, {2});", num, (Owner as main_form).user_id, (rb_type_get.Checked ? 1 : 0));
             command.ExecuteNonQuery();
 
-            connect.Close();
+            common.close_connect(connect);
             dgv_table.Rows.Clear();
 
             if (req == 0)
@@ -247,7 +248,7 @@ namespace ARM_medacc
 
             if (e.ColumnIndex == col_material.Index)
             {
-                connect.Open();
+                common.open_connect(connect);
                 MySqlCommand command = new MySqlCommand(string.Format("select * from materials where description = '{0}'", dgv_table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), connect);
                 MySqlDataReader data = command.ExecuteReader();
                 if (data.Read())
@@ -256,7 +257,7 @@ namespace ARM_medacc
                     dgv_table.Rows[e.RowIndex].Cells[col_measure.Index].Value = data.GetString("measure");
                 }
                 data.Close();
-                connect.Close();
+                common.close_connect(connect);
             }
         }
 

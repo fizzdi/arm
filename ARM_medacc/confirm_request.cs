@@ -27,7 +27,7 @@ namespace ARM_medacc
         private void confirm_request_Load(object sender, EventArgs e)
         {
             string commandtext = "select * from `temp_materials` where request = " + req;
-            connect.Open();
+                        common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
             var source = new AutoCompleteStringCollection();
@@ -68,13 +68,13 @@ namespace ARM_medacc
                 }
             }
             data.Close();
-            connect.Close();
+                        common.close_connect(connect);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             MySqlCommand command = new MySqlCommand("update requests set status = 1 where code = " + req, connect);
-            connect.Open();
+                        common.open_connect(connect);
             command.ExecuteNonQuery();
             MessageBox.Show("Заявка #" + req + " утверждена!");
 
@@ -98,17 +98,17 @@ namespace ARM_medacc
                 com.ExecuteNonQuery();
             }
             tmater.Close();
-            connect.Close();
+                        common.close_connect(connect);
             Close();
         }
          
         private void button2_Click(object sender, EventArgs e)
         {
             MySqlCommand command = new MySqlCommand("update requests set status = 2 where code = " + req, connect);
-            connect.Open();
+                        common.open_connect(connect);
             command.ExecuteNonQuery();
             MessageBox.Show("Заявка #" + req + " отклонена!");
-            connect.Close();
+                        common.close_connect(connect);
             Close();
         }
     }

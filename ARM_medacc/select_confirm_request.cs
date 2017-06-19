@@ -29,12 +29,12 @@ namespace ARM_medacc
         private void select_confirm_request_Load(object sender, EventArgs e)
         {
             string commandtext = string.Format("select * from requests where status = 0", (Owner as main_form).user_id);
-            connect.Open();
+                        common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
             while (data.Read())
                 lb_reqs.Items.Add(data.GetString("code"));
-            connect.Close();
+                        common.close_connect(connect);
             data.Close();
         }
 

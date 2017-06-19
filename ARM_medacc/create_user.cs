@@ -39,14 +39,14 @@ namespace ARM_medacc
             if (common.check_textbox(tb_patronymic, "Введите отчество!", "Внимание"))
                 return;
 
-            connect.Open();
+                        common.open_connect(connect);
             MySqlCommand mycommand = new MySqlCommand(string.Format("select * from users where login = '{0}'", tb_tablnum.Text), connect);
             MySqlDataReader rd = mycommand.ExecuteReader();
             if (rd.HasRows)
             {
                 MessageBox.Show("Пользователь с таким табельным номером уже существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_tablnum.Focus();
-                connect.Close();
+                            common.close_connect(connect);
                 rd.Close();
                 return;
             }
@@ -57,7 +57,7 @@ namespace ARM_medacc
                 tb_tablnum.Text, tb_password.Text, tb_lastname.Text, tb_name.Text, tb_patronymic.Text, cb_grant.SelectedIndex + 1);
             mycommand.CommandText = txtcommand;
             mycommand.ExecuteNonQuery();
-            connect.Close();
+                        common.close_connect(connect);
             Close();
         }
     }

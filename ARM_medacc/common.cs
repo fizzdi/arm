@@ -19,5 +19,17 @@ namespace ARM_medacc
             }
             return false;
         }
+
+        static public void open_connect(MySql.Data.MySqlClient.MySqlConnection con)
+        {
+            if (con.State != System.Data.ConnectionState.Open)
+                con.Open();
+        }
+
+        static public void close_connect(MySql.Data.MySqlClient.MySqlConnection con)
+        {
+            if (con.State == System.Data.ConnectionState.Open)
+                con.Close();
+        }
     }
 }

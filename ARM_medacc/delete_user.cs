@@ -28,7 +28,7 @@ namespace ARM_medacc
             cb_tabnum.SelectedIndex = -1;
             cb_fio.Items.Clear();
             cb_tabnum.Items.Clear();
-            connect.Open();
+                        common.open_connect(connect);
             MySqlCommand mycommand = new MySqlCommand("select * from users", connect);
             MySqlDataReader rd = mycommand.ExecuteReader();
             while (rd.Read())
@@ -37,7 +37,7 @@ namespace ARM_medacc
                 cb_tabnum.Items.Add(rd.GetString("login"));
             }
             rd.Close();
-            connect.Close();
+                        common.close_connect(connect);
         }
 
         private void bt_delete_Click(object sender, EventArgs e)
@@ -48,11 +48,11 @@ namespace ARM_medacc
                 return;
             }
 
-            connect.Open();
+                        common.open_connect(connect);
             var strs = (cb_fio.SelectedItem as string).Split(' ');
             MySqlCommand mycommand = new MySqlCommand(string.Format("delete from users where login = '{0}'", cb_tabnum.SelectedItem), connect);
             mycommand.ExecuteNonQuery();
-            connect.Close();
+                        common.close_connect(connect);
             MessageBox.Show("Удалено!", "Удалено!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             init();
         }
@@ -61,7 +61,7 @@ namespace ARM_medacc
         {
             if (cb_tabnum.SelectedIndex == -1 || flag)
                 return;
-            connect.Open();
+                        common.open_connect(connect);
             MySqlCommand mycommand = new MySqlCommand(string.Format("select * from users where login = '{0}'", cb_tabnum.SelectedItem), connect);
             MySqlDataReader rd = mycommand.ExecuteReader();
             if (!rd.HasRows)
@@ -75,14 +75,14 @@ namespace ARM_medacc
                 flag = false;
             }
             rd.Close();
-            connect.Close();
+                        common.close_connect(connect);
         }
 
         private void cb_fio_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cb_fio.SelectedIndex == -1 || flag)
                 return;
-            connect.Open();
+                        common.open_connect(connect);
             var strs = (cb_fio.SelectedItem as string).Split(' ');
             MySqlCommand mycommand = new MySqlCommand(string.Format("select * from users where last_name = '{0}' and name = '{1}' and patronymic = '{2}'", strs[0], strs[1], strs[2]), connect);
             MySqlDataReader rd = mycommand.ExecuteReader();
@@ -97,7 +97,7 @@ namespace ARM_medacc
                 flag = false;
             }
             rd.Close();
-            connect.Close();
+                        common.close_connect(connect);
         }
     }
 }

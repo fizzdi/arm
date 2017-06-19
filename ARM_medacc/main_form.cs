@@ -33,13 +33,13 @@ namespace ARM_medacc
             }
             connect_builder.CharacterSet = "utf8";
             connect = new MySqlConnection(connect_builder.GetConnectionString(true));
-            connect.Open();
+                        common.open_connect(connect);
             if (connect.State != ConnectionState.Open)
             {
                 MessageBox.Show("Ошибка подключения к базе данных!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Close();
             }
-            connect.Close();
+                        common.close_connect(connect);
 
             login_form login_frm = new login_form(connect);
             login_frm.ShowDialog();
@@ -139,7 +139,9 @@ namespace ARM_medacc
 
         private void bt_appoint_Click(object sender, EventArgs e)
         {
-
+            appoint_frm frm = new appoint_frm(connect);
+            frm.Owner = this;
+            frm.ShowDialog();
         }
 
         private void bt_create_request_Click(object sender, EventArgs e)

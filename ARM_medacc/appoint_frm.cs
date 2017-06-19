@@ -11,16 +11,16 @@ using System.Windows.Forms;
 
 namespace ARM_medacc
 {
-    public partial class show_materials_mol : Form
+    public partial class appoint_frm : Form
     {
         MySqlConnection connect;
-        public show_materials_mol(MySqlConnection connect)
+        public appoint_frm(MySqlConnection connect)
         {
             InitializeComponent();
             this.connect = connect;
         }
 
-        private void show_materials_mol_Load(object sender, EventArgs e)
+        private void appoint_frm_Load(object sender, EventArgs e)
         {
             string commandtext = "select * from materials where frp = " + (Owner as main_form).user_id;
                         common.open_connect(connect);

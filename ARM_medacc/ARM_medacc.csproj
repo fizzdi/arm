@@ -84,6 +84,12 @@
     <Compile Include="correct_request.Designer.cs">
       <DependentUpon>correct_request.cs</DependentUpon>
     </Compile>
+    <Compile Include="appoint_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="appoint_frm.Designer.cs">
+      <DependentUpon>appoint_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="show_materials_mol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="correct_request.resx">
       <DependentUpon>correct_request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="appoint_frm.resx">
+      <DependentUpon>appoint_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="show_materials_mol.resx">
       <DependentUpon>show_materials_mol.cs</DependentUpon>

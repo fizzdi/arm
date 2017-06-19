@@ -33,7 +33,7 @@ namespace ARM_medacc
                 return;
 
             string commandtext = string.Format("select * from users where login = '{0}' and password = '{1}'", tb_tabl_num.Text, tb_password.Text);
-            connect.Open();
+                        common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
             if (data.Read())
@@ -44,7 +44,7 @@ namespace ARM_medacc
                 FirstName = data.GetString("name");
                 Patronymic = data.GetString("patronymic");
                 is_login = true;
-                connect.Close();
+                            common.close_connect(connect);
                 Close();
             }
             else
@@ -52,7 +52,7 @@ namespace ARM_medacc
                 MessageBox.Show("Неправильный табельный номер и/или пароль!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tb_password.Text = "";
             }
-            connect.Close();
+                        common.close_connect(connect);
             data.Close();
         }
 
