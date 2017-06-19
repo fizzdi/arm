@@ -15,11 +15,12 @@ namespace ARM_medacc
     {
         MySqlConnection connect;
         int req = 0;
-        public create_request(MySqlConnection connect, int req = 0)
+        public create_request(MySqlConnection connect, int req = 0, bool buh = false)
         {
             InitializeComponent();
             this.connect = connect;
             this.req = req;
+            gr_type_request.Enabled = false;
         }
 
         private void create_request_Load(object sender, EventArgs e)

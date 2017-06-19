@@ -93,8 +93,6 @@ namespace ARM_medacc
         {
             hide_all();
 
-            bt_register.Show();
-            bt_unregister.Show();
             bt_appoint.Show();
             bt_report.Show();
             but_confirm_request.Show();
@@ -129,12 +127,9 @@ namespace ARM_medacc
 
         private void bt_register_Click(object sender, EventArgs e)
         {
-           
-        }
-
-        private void bt_unregister_Click(object sender, EventArgs e)
-        {
-
+            create_request frm = new create_request(connect);
+            frm.Owner = this;
+            frm.ShowDialog();
         }
 
         private void bt_appoint_Click(object sender, EventArgs e)
@@ -171,6 +166,11 @@ namespace ARM_medacc
             frm.Owner = this;
             frm.ShowDialog();
   
+        }
+
+        private void bt_report_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
