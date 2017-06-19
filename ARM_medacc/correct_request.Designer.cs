@@ -42,6 +42,7 @@
             this.lb_reqs.Size = new System.Drawing.Size(248, 173);
             this.lb_reqs.TabIndex = 0;
             this.lb_reqs.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lb_reqs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lb_reqs_MouseDoubleClick);
             // 
             // groupBox1
             // 

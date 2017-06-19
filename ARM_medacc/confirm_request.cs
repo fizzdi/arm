@@ -25,7 +25,7 @@ namespace ARM_medacc
 
         private void confirm_request_Load(object sender, EventArgs e)
         {
-            string commandtext = "select * from materials where request = " + req;
+            string commandtext = "select * from `temp_materials` where request = " + req;
             connect.Open();
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
@@ -80,6 +80,9 @@ namespace ARM_medacc
             MessageBox.Show("Заявка #" + req + " утверждена!");
 
             //обработка материалов
+
+
+
             connect.Close();
             Close();
         }

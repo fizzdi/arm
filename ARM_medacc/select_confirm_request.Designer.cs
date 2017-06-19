@@ -42,6 +42,7 @@
             this.lb_reqs.Size = new System.Drawing.Size(248, 173);
             this.lb_reqs.TabIndex = 0;
             this.lb_reqs.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lb_reqs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lb_reqs_MouseDoubleClick);
             // 
             // groupBox1
             // 
@@ -59,11 +60,11 @@
             this.but_edit.Name = "but_edit";
             this.but_edit.Size = new System.Drawing.Size(248, 23);
             this.but_edit.TabIndex = 2;
-            this.but_edit.Text = "Изменить";
+            this.but_edit.Text = "Выбрать";
             this.but_edit.UseVisualStyleBackColor = true;
             this.but_edit.Click += new System.EventHandler(this.but_edit_Click);
             // 
-            // correct_request
+            // select_confirm_request
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -73,9 +74,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "correct_request";
+            this.Name = "select_confirm_request";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Коррекция заявки";
+            this.Text = "Утверждение заявок";
             this.Load += new System.EventHandler(this.select_confirm_request_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

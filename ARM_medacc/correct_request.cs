@@ -45,5 +45,15 @@ namespace ARM_medacc
             frm.ShowDialog();
             correct_request_Load(sender, e);
         }
+
+        private void lb_reqs_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lb_reqs.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                lb_reqs.SelectedIndex = index;
+                correct_request_Load(sender, e);
+            }
+        }
     }
 }

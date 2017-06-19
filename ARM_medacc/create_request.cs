@@ -34,7 +34,7 @@ namespace ARM_medacc
         {
             if (req == 0) return;
 
-            string commandtext = "select * from materials where request = " + req;
+            string commandtext = "select * from `temp_materials` where request = " + req;
             connect.Open();
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
@@ -167,14 +167,14 @@ namespace ARM_medacc
             else
             {
                 num = req;
-                command.CommandText = string.Format("DELETE FROM `materials` WHERE `request` = {0}", num);
+                command.CommandText = string.Format("DELETE FROM `temp_materials` WHERE `request` = {0}", num);
                 command.ExecuteNonQuery();
                 command.CommandText = string.Format("DELETE FROM `requests` WHERE `code` = {0}", num);
                 command.ExecuteNonQuery();
             }
             for (int i = 0; i < dgv_table.RowCount - 1; ++i)
             {
-                command.CommandText = string.Format("INSERT INTO `materials` (`id`, `code`, `description`, `measure`, `amount`, `region`, `frp`, `status`, `request`) VALUES (NULL, {0}, '{1}', '{2}', {3}, '{4}', {5}, {6}, {7});",
+                command.CommandText = string.Format("INSERT INTO `temp_materials` (`id`, `code`, `description`, `measure`, `amount`, `region`, `frp`, `status`, `request`) VALUES (NULL, {0}, '{1}', '{2}', {3}, '{4}', {5}, {6}, {7});",
                     dgv_table.Rows[i].Cells[col_code.Index].Value, dgv_table.Rows[i].Cells[col_material.Index].Value,
                     dgv_table.Rows[i].Cells[col_measure.Index].Value, dgv_table.Rows[i].Cells[col_count.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value, (Owner as main_form).user_id, 0, num);
                 command.ExecuteNonQuery();
