@@ -173,27 +173,28 @@ namespace ARM_medacc
                 command.CommandText = string.Format("select amount from materials where description = '{0}' and region = '{1}' and measure = '{2}' and frp = {3}",
                     dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
                     dgv_table.Rows[i].Cells[col_measure.Index].Value, (Owner as main_form).user_id);
-                MySqlDataReader data2 = command.ExecuteReader();
-                if (data2.Read())
+                using (MySqlDataReader data2 = command.ExecuteReader())
                 {
-                    int count = data2.GetInt32("amount");
-
-                    if (count < int.Parse(dgv_table.Rows[i].Cells[col_count.Index].Value.ToString()))
+                    if (data2.Read())
                     {
-                        MessageBox.Show(string.Format("Не хватает материала зарегистрированного на вас! ({0}, {1}, {2})",
-                            dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
-                            dgv_table.Rows[i].Cells[col_measure.Index].Value));
-                        dgv_table.Rows[i].Cells[col_count.Index].Selected = true;
-                    return;
+                        int count = data2.GetInt32("amount");
+
+                        if (count < int.Parse(dgv_table.Rows[i].Cells[col_count.Index].Value.ToString()))
+                        {
+                            MessageBox.Show(string.Format("Не хватает материала зарегистрированного на вас! ({0}, {1}, {2})",
+                                dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
+                                dgv_table.Rows[i].Cells[col_measure.Index].Value));
+                            dgv_table.Rows[i].Cells[col_count.Index].Selected = true;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format("На вас не зарегистрирован такой материал! ({0}, {1}, {2})", dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
+                        dgv_table.Rows[i].Cells[col_measure.Index].Value));
+                        return;
                     }
                 }
-                else
-                {
-                    MessageBox.Show(string.Format("На вас не зарегистрирован такой материал! ({0}, {1}, {2})", dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
-                    dgv_table.Rows[i].Cells[col_measure.Index].Value));
-                    return;
-                }
-                data.Close();
             }
 
 

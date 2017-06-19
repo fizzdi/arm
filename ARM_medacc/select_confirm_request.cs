@@ -41,6 +41,7 @@ namespace ARM_medacc
 
         private void but_edit_Click(object sender, EventArgs e)
         {
+            if (lb_reqs.SelectedIndex == -1) return;
             confirm_request frm = new confirm_request(connect, int.Parse((string)lb_reqs.SelectedItem));
             frm.Owner = Owner;
             frm.ShowDialog();

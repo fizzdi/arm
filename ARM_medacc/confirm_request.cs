@@ -14,7 +14,6 @@ namespace ARM_medacc
 {
     public partial class confirm_request : Form
     {
-        Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
         MySqlConnection connect;
         int req = 0;
         int frp = -1;
@@ -88,6 +87,7 @@ namespace ARM_medacc
                 tmp.Add(tmater.GetString("description"));
                 tmp.Add(tmater.GetString("measure"));
                 tmp.Add(tmater.GetString("region"));
+                tmp.Add(tmater.GetString("amount"));
                 maters.Add(tmp);
             }
             tmater.Close();
@@ -96,8 +96,9 @@ namespace ARM_medacc
                 string descr = maters[i][0];
                 string meas = maters[i][1];
                 string region = maters[i][2];
-                MySqlCommand com = new MySqlCommand(string.Format("update materials set amount = amount{0}{1} where descripton = '{2}' and measure = '{3}' and region = '{4}'",
-                    (rb_type_get.Checked ? "+" : "-"), tmater.GetInt32("amount"), descr, meas, region), connect);
+                string amount = maters[i][3];
+                MySqlCommand com = new MySqlCommand(string.Format("update materials set amount = amount{0}{1} where description = '{2}' and measure = '{3}' and region = '{4}'",
+                    (rb_type_set.Checked ? "+" : "-"), amount, descr, meas, region), connect);
                 if (com.ExecuteNonQuery() == 0)
                 {
                     com.CommandText = string.Format(
@@ -122,5 +123,7 @@ namespace ARM_medacc
             common.close_connect(connect);
             Close();
         }
+
+        //rpivate
     }
 }
