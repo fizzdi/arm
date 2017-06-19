@@ -40,6 +40,7 @@ namespace ARM_medacc
                 Close();
             }
             connect.Close();
+
             login_form login_frm = new login_form(connect);
             login_frm.ShowDialog();
             if (!login_frm.is_login)

@@ -32,11 +32,11 @@
             this.rb_type_get = new System.Windows.Forms.RadioButton();
             this.rb_type_set = new System.Windows.Forms.RadioButton();
             this.dgv_table = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.col_material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_region = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             this.gr_type_request.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_table)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +62,7 @@
             this.rb_type_get.TabStop = true;
             this.rb_type_get.Text = "Списать с учета";
             this.rb_type_get.UseVisualStyleBackColor = true;
+            this.rb_type_get.CheckedChanged += new System.EventHandler(this.rb_type_get_CheckedChanged);
             // 
             // rb_type_set
             // 
@@ -88,18 +89,7 @@
             this.dgv_table.Size = new System.Drawing.Size(622, 283);
             this.dgv_table.TabIndex = 1;
             this.dgv_table.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_table_CellEndEdit);
-            this.dgv_table.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_table_CellValidated);
             this.dgv_table.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgv_table_EditingControlShowing);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(440, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 77);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // col_material
             // 
@@ -121,6 +111,16 @@
             // 
             this.col_region.HeaderText = "Страна";
             this.col_region.Name = "col_region";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(440, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(194, 77);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Сохранить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // create_request
             // 

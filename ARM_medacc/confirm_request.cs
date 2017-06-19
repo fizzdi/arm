@@ -15,6 +15,7 @@ namespace ARM_medacc
     {
         MySqlConnection connect;
         int req = 0;
+        int frp = -1;
         public confirm_request(MySqlConnection connect, int req)
         {
             InitializeComponent();
@@ -31,7 +32,6 @@ namespace ARM_medacc
             MySqlDataReader data = command.ExecuteReader();
             var source = new AutoCompleteStringCollection();
             int i = 0;
-            int frp = -1;
             while (data.Read())
             {
                 dgv_table.Rows.Add();
@@ -78,21 +78,26 @@ namespace ARM_medacc
             command.ExecuteNonQuery();
             MessageBox.Show("Заявка #" + req + " утверждена!");
 
-            //обработка материалов
             command.CommandText = "select * from temp_materials where request = " + req;
             MySqlDataReader tmater = command.ExecuteReader();
-            string insertcommand = "insert into materials (description, measure, amount, region, ftp, request) values (";
-            string updatecommand = "update materials set ";
 
-            int ins = 0;
-            int upd = 0;
             while (tmater.Read())
             {
-
+                string descr = tmater.GetString("description");
+                string meas = tmater.GetString("description");
+                string region = tmater.GetString("description");
+                MySqlCommand com = new MySqlCommand(string.Format("update materials set amount = amount{0}{1} where descripton = '{2}' and measure = '{3}' and region = '{4}'",
+                    (rb_type_get.Checked ? "+" : "-"), tmater.GetInt32("amount"), descr, meas, region), connect);
+                if (com.ExecuteNonQuery() == 0)
+                {
+                    com.CommandText = string.Format(
+                        "INSERT INTO `materials`(`description`, `measure`, `amount`, `region`, `frp`, `request`) select description, measure, amount, region, frp, request from temp_materials where request = '{0}' and frp = {1} and region = '{2}' and measure = '{3}' and description = '{4}'", req, frp, region, meas, descr);
+                    com.ExecuteNonQuery();
+                }
+                com.CommandText = string.Format("delete from temp_materials where request = '{0}' and frp = {1} and region = '{2}' and measure = '{3}' and description = '{4}'", req, frp, region, meas, descr);
+                com.ExecuteNonQuery();
             }
 
-            insertcommand += ")";
-            updatecommand += " where ";
 
             connect.Close();
             Close();
