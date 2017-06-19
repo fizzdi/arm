@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ARM_medacc
 {
     public partial class confirm_request : Form
     {
+        Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
         MySqlConnection connect;
         int req = 0;
         int frp = -1;
@@ -76,7 +78,6 @@ namespace ARM_medacc
             MySqlCommand command = new MySqlCommand("update requests set status = 1 where code = " + req, connect);
             common.open_connect(connect);
             command.ExecuteNonQuery();
-            MessageBox.Show("Заявка #" + req + " утверждена!");
 
             command.CommandText = "select * from temp_materials where request = " + req;
             MySqlDataReader tmater = command.ExecuteReader();
@@ -107,6 +108,8 @@ namespace ARM_medacc
                 com.ExecuteNonQuery();
             }
             common.close_connect(connect);
+
+            MessageBox.Show("Заявка #" + req + " утверждена!");
             Close();
         }
 

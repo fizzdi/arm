@@ -20,7 +20,6 @@ namespace ARM_medacc
             InitializeComponent();
             this.connect = connect;
             this.req = req;
-            gr_type_request.Enabled = false;
         }
 
         private void create_request_Load(object sender, EventArgs e)
@@ -185,13 +184,16 @@ namespace ARM_medacc
                             dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
                             dgv_table.Rows[i].Cells[col_measure.Index].Value));
                         dgv_table.Rows[i].Cells[col_count.Index].Selected = true;
+                    return;
                     }
                 }
                 else
                 {
                     MessageBox.Show(string.Format("На вас не зарегистрирован такой материал! ({0}, {1}, {2})", dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
                     dgv_table.Rows[i].Cells[col_measure.Index].Value));
+                    return;
                 }
+                data.Close();
             }
 
 

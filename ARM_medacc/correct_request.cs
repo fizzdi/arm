@@ -18,7 +18,6 @@ namespace ARM_medacc
         {
             InitializeComponent();
             this.connect = connect;
-            but_edit.Enabled = false;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
