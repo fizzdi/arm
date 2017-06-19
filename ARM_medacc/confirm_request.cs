@@ -35,7 +35,6 @@ namespace ARM_medacc
             while (data.Read())
             {
                 dgv_table.Rows.Add();
-                dgv_table.Rows[i].Cells[col_code.Index].Value = data.GetString("code");
                 dgv_table.Rows[i].Cells[col_material.Index].Value = data.GetString("description");
                 dgv_table.Rows[i].Cells[col_count.Index].Value = data.GetString("amount");
                 dgv_table.Rows[i].Cells[col_region.Index].Value = data.GetString("region");
@@ -80,8 +79,14 @@ namespace ARM_medacc
             MessageBox.Show("Заявка #" + req + " утверждена!");
 
             //обработка материалов
+            command.CommandText = "select * from temp_materials where request = " + req;
+            MySqlDataReader tmater = command.ExecuteReader();
+            string insertcommand = "insert into materials (description, measure, amount, region, ftp, request) values (";
+            string updatecommand = "update materials set ";
 
 
+            insertcommand += ")";
+            updatecommand += " where ";
 
             connect.Close();
             Close();

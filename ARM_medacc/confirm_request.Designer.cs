@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv_table = new System.Windows.Forms.DataGridView();
-            this.col_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_material = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_region = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.rb_type_set = new System.Windows.Forms.RadioButton();
             this.rb_type_get = new System.Windows.Forms.RadioButton();
@@ -41,6 +36,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tb_mol = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.col_material = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_region = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_table)).BeginInit();
             this.gr_type_request.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -52,7 +51,6 @@
             this.dgv_table.AllowUserToDeleteRows = false;
             this.dgv_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.col_code,
             this.col_material,
             this.col_count,
             this.col_measure,
@@ -62,38 +60,6 @@
             this.dgv_table.ReadOnly = true;
             this.dgv_table.Size = new System.Drawing.Size(622, 283);
             this.dgv_table.TabIndex = 1;
-            // 
-            // col_code
-            // 
-            this.col_code.HeaderText = "Код материала";
-            this.col_code.Name = "col_code";
-            this.col_code.ReadOnly = true;
-            // 
-            // col_material
-            // 
-            this.col_material.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.col_material.HeaderText = "Наименование";
-            this.col_material.Name = "col_material";
-            this.col_material.ReadOnly = true;
-            this.col_material.Width = 108;
-            // 
-            // col_count
-            // 
-            this.col_count.HeaderText = "Количество";
-            this.col_count.Name = "col_count";
-            this.col_count.ReadOnly = true;
-            // 
-            // col_measure
-            // 
-            this.col_measure.HeaderText = "Ед. измерения";
-            this.col_measure.Name = "col_measure";
-            this.col_measure.ReadOnly = true;
-            // 
-            // col_region
-            // 
-            this.col_region.HeaderText = "Страна";
-            this.col_region.Name = "col_region";
-            this.col_region.ReadOnly = true;
             // 
             // button1
             // 
@@ -168,6 +134,31 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // col_material
+            // 
+            this.col_material.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.col_material.HeaderText = "Наименование";
+            this.col_material.Name = "col_material";
+            this.col_material.ReadOnly = true;
+            // 
+            // col_count
+            // 
+            this.col_count.HeaderText = "Количество";
+            this.col_count.Name = "col_count";
+            this.col_count.ReadOnly = true;
+            // 
+            // col_measure
+            // 
+            this.col_measure.HeaderText = "Ед. измерения";
+            this.col_measure.Name = "col_measure";
+            this.col_measure.ReadOnly = true;
+            // 
+            // col_region
+            // 
+            this.col_region.HeaderText = "Страна";
+            this.col_region.Name = "col_region";
+            this.col_region.ReadOnly = true;
+            // 
             // confirm_request
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,11 +187,6 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dgv_table;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_material;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_count;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_measure;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_region;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RadioButton rb_type_set;
         private System.Windows.Forms.RadioButton rb_type_get;
@@ -208,5 +194,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox tb_mol;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_material;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_count;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_measure;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_region;
     }
 }

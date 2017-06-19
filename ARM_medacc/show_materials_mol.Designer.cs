@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv_table = new System.Windows.Forms.DataGridView();
-            this.col_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,7 +43,6 @@
             this.dgv_table.AllowUserToOrderColumns = true;
             this.dgv_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.col_code,
             this.col_material,
             this.col_count,
             this.col_measure,
@@ -55,32 +53,30 @@
             this.dgv_table.Size = new System.Drawing.Size(587, 368);
             this.dgv_table.TabIndex = 2;
             // 
-            // col_code
-            // 
-            this.col_code.HeaderText = "Код материала";
-            this.col_code.Name = "col_code";
-            // 
             // col_material
             // 
-            this.col_material.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.col_material.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.col_material.HeaderText = "Наименование";
             this.col_material.Name = "col_material";
-            this.col_material.Width = 108;
+            this.col_material.ReadOnly = true;
             // 
             // col_count
             // 
             this.col_count.HeaderText = "Количество";
             this.col_count.Name = "col_count";
+            this.col_count.ReadOnly = true;
             // 
             // col_measure
             // 
             this.col_measure.HeaderText = "Ед. измерения";
             this.col_measure.Name = "col_measure";
+            this.col_measure.ReadOnly = true;
             // 
             // col_region
             // 
             this.col_region.HeaderText = "Страна";
             this.col_region.Name = "col_region";
+            this.col_region.ReadOnly = true;
             // 
             // show_materials_mol
             // 
@@ -103,7 +99,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_table;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_code;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_material;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_count;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_measure;

@@ -43,7 +43,6 @@ namespace ARM_medacc
             while (data.Read())
             {
                 dgv_table.Rows.Add();
-                dgv_table.Rows[i].Cells[col_code.Index].Value = data.GetString("code");
                 dgv_table.Rows[i].Cells[col_material.Index].Value = data.GetString("description");
                 dgv_table.Rows[i].Cells[col_count.Index].Value = data.GetString("amount");
                 dgv_table.Rows[i].Cells[col_region.Index].Value = data.GetString("region");
@@ -65,27 +64,6 @@ namespace ARM_medacc
 
         private void dgv_table_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgv_table.CurrentCell.ColumnIndex == col_code.Index)
-            {
-                TextBox txt = e.Control as TextBox;
-                if (txt != null)
-                {
-                    string commandtext = "select distinct code from materials";
-                    connect.Open();
-                    MySqlCommand command = new MySqlCommand(commandtext, connect);
-                    MySqlDataReader data = command.ExecuteReader();
-                    var source = new AutoCompleteStringCollection();
-                    while (data.Read())
-                        source.Add(data.GetString("code"));
-                    connect.Close();
-                    data.Close();
-
-                    txt.AutoCompleteMode = AutoCompleteMode.Append;
-                    txt.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    txt.AutoCompleteCustomSource = source;
-                }
-            }
-
             if (dgv_table.CurrentCell.ColumnIndex == col_material.Index)
             {
                 TextBox txt = e.Control as TextBox;
@@ -174,9 +152,9 @@ namespace ARM_medacc
             }
             for (int i = 0; i < dgv_table.RowCount - 1; ++i)
             {
-                command.CommandText = string.Format("INSERT INTO `temp_materials` (`id`, `code`, `description`, `measure`, `amount`, `region`, `frp`, `status`, `request`) VALUES (NULL, {0}, '{1}', '{2}', {3}, '{4}', {5}, {6}, {7});",
-                    dgv_table.Rows[i].Cells[col_code.Index].Value, dgv_table.Rows[i].Cells[col_material.Index].Value,
-                    dgv_table.Rows[i].Cells[col_measure.Index].Value, dgv_table.Rows[i].Cells[col_count.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value, (Owner as main_form).user_id, 0, num);
+                command.CommandText = string.Format("INSERT INTO `temp_materials` (`id`, `description`, `measure`, `amount`, `region`, `frp`, `status`, `request`) VALUES (NULL, {0}, '{1}', '{2}', {3}, '{4}', {5}, {6}, {7});",
+                    dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_measure.Index].Value, dgv_table.Rows[i].Cells[col_count.Index].Value, 
+                    dgv_table.Rows[i].Cells[col_region.Index].Value, (Owner as main_form).user_id, 0, num);
                 command.ExecuteNonQuery();
             }
             command.CommandText = string.Format("INSERT INTO `requests` (`code`, `status`, `frp`, `type`) VALUES('{0}', 0, {1}, {2});", num, (Owner as main_form).user_id, (rb_type_get.Checked ? 1 : 0));
@@ -207,21 +185,6 @@ namespace ARM_medacc
                 }
             }
 
-            if (e.ColumnIndex == col_code.Index)
-            {
-                connect.Open();
-                MySqlCommand command = new MySqlCommand(string.Format("select * from materials where code = '{0}'", dgv_table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), connect);
-                MySqlDataReader data = command.ExecuteReader();
-                if (data.Read())
-                {
-                    dgv_table.Rows[e.RowIndex].Cells[col_material.Index].Value = data.GetString("description");
-                    dgv_table.Rows[e.RowIndex].Cells[col_region.Index].Value = data.GetString("region");
-                    dgv_table.Rows[e.RowIndex].Cells[col_measure.Index].Value = data.GetString("measure");
-                }
-                data.Close();
-                connect.Close();
-            }
-
             if (e.ColumnIndex == col_material.Index)
             {
                 connect.Open();
@@ -229,7 +192,6 @@ namespace ARM_medacc
                 MySqlDataReader data = command.ExecuteReader();
                 if (data.Read())
                 {
-                    dgv_table.Rows[e.RowIndex].Cells[col_code.Index].Value = data.GetString("code");
                     dgv_table.Rows[e.RowIndex].Cells[col_region.Index].Value = data.GetString("region");
                     dgv_table.Rows[e.RowIndex].Cells[col_measure.Index].Value = data.GetString("measure");
                 }

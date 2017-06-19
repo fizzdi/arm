@@ -32,12 +32,11 @@
             this.rb_type_get = new System.Windows.Forms.RadioButton();
             this.rb_type_set = new System.Windows.Forms.RadioButton();
             this.dgv_table = new System.Windows.Forms.DataGridView();
-            this.col_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             this.col_material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_region = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             this.gr_type_request.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_table)).BeginInit();
             this.SuspendLayout();
@@ -80,7 +79,6 @@
             this.dgv_table.AllowUserToOrderColumns = true;
             this.dgv_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.col_code,
             this.col_material,
             this.col_count,
             this.col_measure,
@@ -93,17 +91,21 @@
             this.dgv_table.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_table_CellValidated);
             this.dgv_table.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgv_table_EditingControlShowing);
             // 
-            // col_code
+            // button1
             // 
-            this.col_code.HeaderText = "Код материала";
-            this.col_code.Name = "col_code";
+            this.button1.Location = new System.Drawing.Point(440, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(194, 77);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Сохранить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // col_material
             // 
-            this.col_material.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.col_material.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.col_material.HeaderText = "Наименование";
             this.col_material.Name = "col_material";
-            this.col_material.Width = 108;
             // 
             // col_count
             // 
@@ -119,16 +121,6 @@
             // 
             this.col_region.HeaderText = "Страна";
             this.col_region.Name = "col_region";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(440, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 77);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // create_request
             // 
@@ -158,11 +150,10 @@
         private System.Windows.Forms.RadioButton rb_type_get;
         private System.Windows.Forms.RadioButton rb_type_set;
         private System.Windows.Forms.DataGridView dgv_table;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_code;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_material;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_count;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_measure;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_region;
-        private System.Windows.Forms.Button button1;
     }
 }

@@ -31,7 +31,6 @@ namespace ARM_medacc
             while (data.Read())
             {
                 dgv_table.Rows.Add();
-                dgv_table.Rows[i].Cells[col_code.Index].Value = data.GetString("code");
                 dgv_table.Rows[i].Cells[col_material.Index].Value = data.GetString("description");
                 dgv_table.Rows[i].Cells[col_count.Index].Value = data.GetString("amount");
                 dgv_table.Rows[i].Cells[col_region.Index].Value = data.GetString("region");
