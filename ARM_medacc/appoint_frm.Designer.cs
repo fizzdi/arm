@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.dgv_table = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.col_material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_region = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_mol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.col_mol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_table)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +54,16 @@
             this.dgv_table.Name = "dgv_table";
             this.dgv_table.Size = new System.Drawing.Size(587, 338);
             this.dgv_table.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 357);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(586, 31);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Сохранить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // col_material
             // 
@@ -84,15 +94,8 @@
             // 
             this.col_mol.HeaderText = "МОЛ";
             this.col_mol.Name = "col_mol";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(13, 357);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(586, 31);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.col_mol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.col_mol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // appoint_frm
             // 
@@ -116,11 +119,11 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_table;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_material;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_count;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_measure;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_region;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_mol;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn col_mol;
     }
 }
