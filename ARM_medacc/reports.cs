@@ -131,5 +131,12 @@ namespace ARM_medacc
         {
             generate_main_report("ОСТАТКИ МАТЕРИАЛЬНЫХ ЗАПАСОВ", true);
         }
+
+        private void but_frp_report_Click(object sender, EventArgs e)
+        {
+            report_frp frm = new report_frp(connect);
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
     }
 }

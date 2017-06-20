@@ -63,6 +63,7 @@
             this.but_frp_report.TabIndex = 3;
             this.but_frp_report.Text = "Материальные запасы МОЛ";
             this.but_frp_report.UseVisualStyleBackColor = true;
+            this.but_frp_report.Click += new System.EventHandler(this.but_frp_report_Click);
             // 
             // but_all
             // 

@@ -22,7 +22,7 @@ namespace ARM_medacc
 
         private void show_materials_mol_Load(object sender, EventArgs e)
         {
-            string commandtext = "select * from materials where frp = " + (Owner as main_form).user_id;
+            string commandtext = "select * from materials where frp = " + (Owner as main_form).user_id + " and amount > 0";
                         common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();

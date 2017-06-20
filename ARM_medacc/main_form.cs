@@ -3,7 +3,6 @@ using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ARM_medacc
 {
