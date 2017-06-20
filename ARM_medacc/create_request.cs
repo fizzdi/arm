@@ -71,7 +71,7 @@ namespace ARM_medacc
                     common.close_connect(connect);
                     data.Close();
 
-                    txt.AutoCompleteMode = AutoCompleteMode.Append;
+                    txt.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     txt.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     txt.AutoCompleteCustomSource = source;
                 }
@@ -92,7 +92,7 @@ namespace ARM_medacc
                     common.close_connect(connect);
                     data.Close();
 
-                    txt.AutoCompleteMode = AutoCompleteMode.Append;
+                    txt.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     txt.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     txt.AutoCompleteCustomSource = source;
                 }
@@ -113,7 +113,7 @@ namespace ARM_medacc
                     common.close_connect(connect);
                     data.Close();
 
-                    txt.AutoCompleteMode = AutoCompleteMode.Append;
+                    txt.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     txt.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     txt.AutoCompleteCustomSource = source;
                 }

@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ARM_medacc
 {
@@ -170,7 +171,9 @@ namespace ARM_medacc
 
         private void bt_report_Click(object sender, EventArgs e)
         {
-
+            reports frm = new reports(connect);
+            frm.Owner = this;
+            frm.ShowDialog();
         }
     }
 }

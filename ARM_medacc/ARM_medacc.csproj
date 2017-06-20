@@ -100,6 +100,18 @@
     <Compile Include="show_materials_mol.Designer.cs">
       <DependentUpon>show_materials_mol.cs</DependentUpon>
     </Compile>
+    <Compile Include="report_frp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="report_frp.Designer.cs">
+      <DependentUpon>report_frp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reports.Designer.cs">
+      <DependentUpon>reports.cs</DependentUpon>
+    </Compile>
     <Compile Include="test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +161,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="show_materials_mol.resx">
       <DependentUpon>show_materials_mol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report_frp.resx">
+      <DependentUpon>report_frp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reports.resx">
+      <DependentUpon>reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="test.resx">
       <DependentUpon>test.cs</DependentUpon>

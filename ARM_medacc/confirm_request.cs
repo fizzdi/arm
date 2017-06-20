@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,15 +59,7 @@ namespace ARM_medacc
             data = command.ExecuteReader();
             if (data.Read())
             {
-                tb_mol.Text = data.GetString("last_name");
-                string name = data.GetString("name");
-                string patronymic = data.GetString("patronymic");
-                if (name.Length > 0)
-                {
-                    tb_mol.Text += " " + name[0] + ".";
-                    if (patronymic.Length > 0)
-                        tb_mol.Text += " " + patronymic[0] + ".";
-                }
+                tb_mol.Text = string.Format("{0} {1} {2}", data.GetString("last_name"), data.GetString("name"), data.GetString("patronymic"));
             }
             data.Close();
             common.close_connect(connect);
@@ -74,11 +67,14 @@ namespace ARM_medacc
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show(String.Format("Внимание, данные материалы будут {0}. Продолжить?", rb_type_get.Checked ? "списаны" : "поставлены на учет"), "Внимание", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
             MySqlCommand command = new MySqlCommand("update requests set status = 1 where code = " + req, connect);
             common.open_connect(connect);
             command.ExecuteNonQuery();
 
-            command.CommandText = "select * from temp_materials where request = " + req;
+            command.CommandText = "select * from temp_materials where request = " + req + " order by id";
             MySqlDataReader tmater = command.ExecuteReader();
             List<List<string>> maters = new List<List<string>>();
             while (tmater.Read())
@@ -91,26 +87,70 @@ namespace ARM_medacc
                 maters.Add(tmp);
             }
             tmater.Close();
-            for (int i = 0; i < maters.Count; ++i)
-            {
-                string descr = maters[i][0];
-                string meas = maters[i][1];
-                string region = maters[i][2];
-                string amount = maters[i][3];
-                MySqlCommand com = new MySqlCommand(string.Format("update materials set amount = amount{0}{1} where description = '{2}' and measure = '{3}' and region = '{4}'",
-                    (rb_type_set.Checked ? "+" : "-"), amount, descr, meas, region), connect);
-                if (com.ExecuteNonQuery() == 0)
+
+            File.Copy(Path.GetFullPath("templates\\akt.xls"), Path.GetFullPath(string.Format("АКТ №{0:00000000}.xls", req)));
+            Excel.Application exap = new Excel.Application();
+            exap.Workbooks.Open(Path.GetFullPath(string.Format("АКТ №{0:00000000}.xls", req)));
+            Excel.Worksheet exsh = exap.Worksheets[1];
+            exsh.Cells[7, 10] = string.Format("АКТ №{0:00000000}", req);
+            exsh.Cells[9, 10] = "от " + DateTime.Now.ToString("dd MMMM yyyy") + " г.";
+            exsh.Cells[9, 62] = DateTime.Now.ToString("dd.MM.yyyy");
+            exsh.Cells[13, 11] = tb_mol.Text;
+
+
+            //Формирование акта на списание
+            if (rb_type_get.Checked)
+                exsh.Cells[8, 10] = "О СПИСАНИИ МАТЕРИАЛЬНЫХ ЗАПАСОВ";
+            else
+                exsh.Cells[8, 10] = "О ПРИЕМКЕ МАТЕРИАЛЬНЫХ ЗАПАСОВ";
+
+            try {
+
+                for (int i = maters.Count - 1; i >=0; --i)
                 {
-                    com.CommandText = string.Format(
-                        "INSERT INTO `materials`(`description`, `measure`, `amount`, `region`, `frp`, `request`) select description, measure, amount, region, frp, request from temp_materials where request = '{0}' and frp = {1} and region = '{2}' and measure = '{3}' and description = '{4}'", req, frp, region, meas, descr);
+                    if (i != maters.Count - 1)
+                        common.dublicate_row(24, exsh);
+
+                    string descr = maters[i][0];
+                    string meas = maters[i][1];
+                    string region = maters[i][2];
+                    string amount = maters[i][3];
+
+                    exsh.Cells[24, 1] = i+1;
+                    exsh.Cells[24, 3] = descr;
+                    exsh.Cells[24, 18] = meas;
+                    exsh.Cells[24, 22] = amount;
+                    exsh.Cells[24, 26] = region;
+
+                    MySqlCommand com = new MySqlCommand(string.Format("update materials set amount = amount{0}{1} where description = '{2}' and measure = '{3}' and region = '{4}'",
+                        (rb_type_set.Checked ? "+" : "-"), amount, descr, meas, region), connect);
+                    if (com.ExecuteNonQuery() == 0)
+                    {
+                        com.CommandText = string.Format(
+                            "INSERT INTO `materials`(`description`, `measure`, `amount`, `region`, `frp`, `request`) select description, measure, amount, region, frp, request from temp_materials where request = '{0}' and frp = {1} and region = '{2}' and measure = '{3}' and description = '{4}'", req, frp, region, meas, descr);
+                        com.ExecuteNonQuery();
+                    }
+                    com.CommandText = string.Format("delete from temp_materials where request = '{0}' and frp = {1} and region = '{2}' and measure = '{3}' and description = '{4}'", req, frp, region, meas, descr);
                     com.ExecuteNonQuery();
                 }
-                com.CommandText = string.Format("delete from temp_materials where request = '{0}' and frp = {1} and region = '{2}' and measure = '{3}' and description = '{4}'", req, frp, region, meas, descr);
-                com.ExecuteNonQuery();
+                common.close_connect(connect);
             }
-            common.close_connect(connect);
+            catch (Exception ex)
+            {
+                exap.ActiveWorkbook.Close(false);
+                exap.Quit();
+                return;
+            }
 
             MessageBox.Show("Заявка #" + req + " утверждена!");
+
+           
+
+           
+
+
+
+            exap.Visible = true;
             Close();
         }
 
