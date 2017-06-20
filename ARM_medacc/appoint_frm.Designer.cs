@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(appoint_frm));
             this.dgv_table = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.col_material = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +45,14 @@
             this.dgv_table.AllowUserToAddRows = false;
             this.dgv_table.AllowUserToDeleteRows = false;
             this.dgv_table.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_table.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_material,
@@ -52,14 +62,15 @@
             this.col_mol});
             this.dgv_table.Location = new System.Drawing.Point(12, 12);
             this.dgv_table.Name = "dgv_table";
-            this.dgv_table.Size = new System.Drawing.Size(587, 338);
+            this.dgv_table.Size = new System.Drawing.Size(883, 338);
             this.dgv_table.TabIndex = 2;
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.Location = new System.Drawing.Point(13, 357);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(586, 31);
+            this.button1.Size = new System.Drawing.Size(882, 49);
             this.button1.TabIndex = 3;
             this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
@@ -77,6 +88,7 @@
             this.col_count.HeaderText = "Количество";
             this.col_count.Name = "col_count";
             this.col_count.ReadOnly = true;
+            this.col_count.Width = 120;
             // 
             // col_measure
             // 
@@ -86,9 +98,10 @@
             // 
             // col_region
             // 
-            this.col_region.HeaderText = "Страна";
+            this.col_region.HeaderText = "Страна происхождения";
             this.col_region.Name = "col_region";
             this.col_region.ReadOnly = true;
+            this.col_region.Width = 150;
             // 
             // col_mol
             // 
@@ -96,15 +109,17 @@
             this.col_mol.Name = "col_mol";
             this.col_mol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.col_mol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.col_mol.Width = 200;
             // 
             // appoint_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 392);
+            this.ClientSize = new System.Drawing.Size(907, 412);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgv_table);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "appoint_frm";

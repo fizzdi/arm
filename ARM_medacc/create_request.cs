@@ -26,6 +26,7 @@ namespace ARM_medacc
         {
             if (req == 0) return;
 
+            button2.Visible = true;
             string commandtext = "select * from `temp_materials` where request = " + req;
             common.open_connect(connect);
             MySqlCommand command = new MySqlCommand(commandtext, connect);
@@ -132,7 +133,7 @@ namespace ARM_medacc
             {
                 List<object> cur_mat = new List<object>();
                 cur_mat.Add(data.GetString("description"));
-                cur_mat.Add(data.GetInt32("amount"));
+                cur_mat.Add(data.GetString("amount"));
                 cur_mat.Add(data.GetString("region"));
                 cur_mat.Add(data.GetString("measure"));
                 list_base.Add(cur_mat);
@@ -177,9 +178,9 @@ namespace ARM_medacc
                 {
                     if (data2.Read())
                     {
-                        int count = data2.GetInt32("amount");
+                        float count = data2.GetFloat("amount");
 
-                        if (count < int.Parse(dgv_table.Rows[i].Cells[col_count.Index].Value.ToString()))
+                        if (Math.Abs(count - int.Parse(dgv_table.Rows[i].Cells[col_count.Index].Value.ToString())) < 0.02)
                         {
                             MessageBox.Show(string.Format("Не хватает материала зарегистрированного на вас! ({0}, {1}, {2})",
                                 dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
@@ -218,7 +219,7 @@ namespace ARM_medacc
             }
             for (int i = 0; i < dgv_table.RowCount - 1; ++i)
             {
-                command.CommandText = string.Format("INSERT INTO `temp_materials` (`description`, `measure`, `amount`, `region`, `frp`, `request`) VALUES ('{0}', '{1}', {2}, '{3}', '{4}', {5});",
+                command.CommandText = string.Format("INSERT INTO `temp_materials` (`description`, `measure`, `amount`, `region`, `frp`, `request`) VALUES ('{0}', '{1}', {2:0.00}, '{3}', '{4}', {5});",
                     dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_measure.Index].Value, dgv_table.Rows[i].Cells[col_count.Index].Value,
                     dgv_table.Rows[i].Cells[col_region.Index].Value, (Owner as main_form).user_id, num);
                 command.ExecuteNonQuery();
@@ -269,6 +270,16 @@ namespace ARM_medacc
         private void rb_type_get_CheckedChanged(object sender, EventArgs e)
         {
             dgv_table.Rows.Clear();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            common.open_connect(connect);
+            MySqlCommand command = new MySqlCommand("update requests set status = 3 where code = " + req, connect);
+            command.ExecuteNonQuery();
+            common.close_connect(connect);
+            MessageBox.Show("Заявка #" + req + " удалена!");
+            Close();
         }
     }
 }

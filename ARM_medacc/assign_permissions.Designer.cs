@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(assign_permissions));
             this.cb_fio = new System.Windows.Forms.ComboBox();
             this.cb_grant = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,49 +42,54 @@
             // 
             this.cb_fio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cb_fio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cb_fio.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cb_fio.FormattingEnabled = true;
-            this.cb_fio.Location = new System.Drawing.Point(132, 34);
+            this.cb_fio.Location = new System.Drawing.Point(188, 34);
             this.cb_fio.Name = "cb_fio";
-            this.cb_fio.Size = new System.Drawing.Size(121, 21);
+            this.cb_fio.Size = new System.Drawing.Size(343, 29);
             this.cb_fio.TabIndex = 0;
             this.cb_fio.SelectedIndexChanged += new System.EventHandler(this.cb_fio_SelectedIndexChanged);
             // 
             // cb_grant
             // 
             this.cb_grant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_grant.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cb_grant.FormattingEnabled = true;
             this.cb_grant.Items.AddRange(new object[] {
             "Администратор",
             "Материально ответственное лицо",
             "Бухгалтер"});
-            this.cb_grant.Location = new System.Drawing.Point(132, 61);
+            this.cb_grant.Location = new System.Drawing.Point(188, 61);
             this.cb_grant.Name = "cb_grant";
-            this.cb_grant.Size = new System.Drawing.Size(121, 21);
+            this.cb_grant.Size = new System.Drawing.Size(343, 29);
             this.cb_grant.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(15, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 13);
+            this.label1.Size = new System.Drawing.Size(167, 21);
             this.label1.TabIndex = 2;
             this.label1.Text = "ФИО пользователя:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(15, 64);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.Size = new System.Drawing.Size(62, 21);
             this.label2.TabIndex = 3;
             this.label2.Text = "Права:";
             // 
             // bt_save
             // 
-            this.bt_save.Location = new System.Drawing.Point(80, 93);
+            this.bt_save.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bt_save.Location = new System.Drawing.Point(157, 96);
             this.bt_save.Name = "bt_save";
-            this.bt_save.Size = new System.Drawing.Size(114, 30);
+            this.bt_save.Size = new System.Drawing.Size(199, 62);
             this.bt_save.TabIndex = 4;
             this.bt_save.Text = "Сохранить";
             this.bt_save.UseVisualStyleBackColor = true;
@@ -92,9 +98,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(15, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.Size = new System.Drawing.Size(158, 21);
             this.label3.TabIndex = 6;
             this.label3.Text = "Табельный номер:";
             // 
@@ -102,10 +109,11 @@
             // 
             this.cb_tabnum.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cb_tabnum.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cb_tabnum.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cb_tabnum.FormattingEnabled = true;
-            this.cb_tabnum.Location = new System.Drawing.Point(132, 7);
+            this.cb_tabnum.Location = new System.Drawing.Point(188, 7);
             this.cb_tabnum.Name = "cb_tabnum";
-            this.cb_tabnum.Size = new System.Drawing.Size(121, 21);
+            this.cb_tabnum.Size = new System.Drawing.Size(343, 29);
             this.cb_tabnum.TabIndex = 5;
             this.cb_tabnum.SelectedIndexChanged += new System.EventHandler(this.cb_tabnum_SelectedIndexChanged);
             // 
@@ -113,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 134);
+            this.ClientSize = new System.Drawing.Size(542, 170);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cb_tabnum);
             this.Controls.Add(this.bt_save);
@@ -122,6 +130,7 @@
             this.Controls.Add(this.cb_grant);
             this.Controls.Add(this.cb_fio);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "assign_permissions";

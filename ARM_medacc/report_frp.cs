@@ -17,7 +17,7 @@ namespace ARM_medacc
 
             common.open_connect(connect);
             List<string> mols = new List<string>();
-            MySqlCommand molcommand = new MySqlCommand("select id, concat(last_name, \" \", name, \" \", patronymic) as mol from users where role_id = 2", connect);
+            MySqlCommand molcommand = new MySqlCommand("select id, concat(last_name, ' ', name, ' ', patronymic) as mol from users where role_id = 2", connect);
             MySqlDataReader molread = molcommand.ExecuteReader();
 
             while (molread.Read())
@@ -58,7 +58,7 @@ namespace ARM_medacc
                 exsh.Cells[20, 3] = data.GetString("description");
                 exsh.Cells[20, 18] = data.GetString("measure");
                 exsh.Cells[20, 22] = data.GetString("amount");
-                exsh.Cells[20, 27] = data.GetString("region");
+                exsh.Cells[20, 26] = data.GetString("region");
                 i++;
             }
 

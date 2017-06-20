@@ -112,12 +112,6 @@
     <Compile Include="reports.Designer.cs">
       <DependentUpon>reports.cs</DependentUpon>
     </Compile>
-    <Compile Include="test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="test.Designer.cs">
-      <DependentUpon>test.cs</DependentUpon>
-    </Compile>
     <Compile Include="create_user.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,9 +162,6 @@
     <EmbeddedResource Include="reports.resx">
       <DependentUpon>reports.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="test.resx">
-      <DependentUpon>test.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="create_user.resx">
       <DependentUpon>create_user.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,6 +179,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -202,6 +194,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\send.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(reports));
             this.but_all_mol = new System.Windows.Forms.Button();
             this.but_rem_mol = new System.Windows.Forms.Button();
             this.but_frp_report = new System.Windows.Forms.Button();
@@ -37,9 +38,10 @@
             // 
             // but_all_mol
             // 
+            this.but_all_mol.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.but_all_mol.Location = new System.Drawing.Point(12, 12);
             this.but_all_mol.Name = "but_all_mol";
-            this.but_all_mol.Size = new System.Drawing.Size(156, 42);
+            this.but_all_mol.Size = new System.Drawing.Size(238, 76);
             this.but_all_mol.TabIndex = 1;
             this.but_all_mol.Text = "Все материальные запасы (с учетом МОЛ)";
             this.but_all_mol.UseVisualStyleBackColor = true;
@@ -47,9 +49,10 @@
             // 
             // but_rem_mol
             // 
-            this.but_rem_mol.Location = new System.Drawing.Point(174, 12);
+            this.but_rem_mol.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.but_rem_mol.Location = new System.Drawing.Point(256, 12);
             this.but_rem_mol.Name = "but_rem_mol";
-            this.but_rem_mol.Size = new System.Drawing.Size(156, 42);
+            this.but_rem_mol.Size = new System.Drawing.Size(238, 76);
             this.but_rem_mol.TabIndex = 2;
             this.but_rem_mol.Text = "Остатки материальных запасов (с учетом МОЛ)";
             this.but_rem_mol.UseVisualStyleBackColor = true;
@@ -57,9 +60,10 @@
             // 
             // but_frp_report
             // 
-            this.but_frp_report.Location = new System.Drawing.Point(12, 108);
+            this.but_frp_report.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.but_frp_report.Location = new System.Drawing.Point(12, 176);
             this.but_frp_report.Name = "but_frp_report";
-            this.but_frp_report.Size = new System.Drawing.Size(318, 42);
+            this.but_frp_report.Size = new System.Drawing.Size(482, 76);
             this.but_frp_report.TabIndex = 3;
             this.but_frp_report.Text = "Материальные запасы МОЛ";
             this.but_frp_report.UseVisualStyleBackColor = true;
@@ -67,9 +71,10 @@
             // 
             // but_all
             // 
-            this.but_all.Location = new System.Drawing.Point(12, 60);
+            this.but_all.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.but_all.Location = new System.Drawing.Point(12, 94);
             this.but_all.Name = "but_all";
-            this.but_all.Size = new System.Drawing.Size(156, 42);
+            this.but_all.Size = new System.Drawing.Size(238, 76);
             this.but_all.TabIndex = 4;
             this.but_all.Text = "Все материальные запасы (без учета МОЛ)";
             this.but_all.UseVisualStyleBackColor = true;
@@ -77,9 +82,10 @@
             // 
             // but_rem
             // 
-            this.but_rem.Location = new System.Drawing.Point(174, 60);
+            this.but_rem.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.but_rem.Location = new System.Drawing.Point(256, 94);
             this.but_rem.Name = "but_rem";
-            this.but_rem.Size = new System.Drawing.Size(156, 42);
+            this.but_rem.Size = new System.Drawing.Size(238, 76);
             this.but_rem.TabIndex = 5;
             this.but_rem.Text = "Остатки материальных запасов (без учета МОЛ)";
             this.but_rem.UseVisualStyleBackColor = true;
@@ -89,13 +95,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 159);
+            this.ClientSize = new System.Drawing.Size(504, 262);
             this.Controls.Add(this.but_rem);
             this.Controls.Add(this.but_all);
             this.Controls.Add(this.but_frp_report);
             this.Controls.Add(this.but_rem_mol);
             this.Controls.Add(this.but_all_mol);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "reports";

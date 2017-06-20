@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(show_materials_mol));
             this.dgv_table = new System.Windows.Forms.DataGridView();
             this.col_material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,12 +44,28 @@
             this.dgv_table.AllowUserToAddRows = false;
             this.dgv_table.AllowUserToDeleteRows = false;
             this.dgv_table.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_table.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_material,
             this.col_count,
             this.col_measure,
             this.col_region});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_table.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_table.Location = new System.Drawing.Point(12, 12);
             this.dgv_table.Name = "dgv_table";
             this.dgv_table.ReadOnly = true;
@@ -65,6 +84,7 @@
             this.col_count.HeaderText = "Количество";
             this.col_count.Name = "col_count";
             this.col_count.ReadOnly = true;
+            this.col_count.Width = 120;
             // 
             // col_measure
             // 
@@ -74,9 +94,10 @@
             // 
             // col_region
             // 
-            this.col_region.HeaderText = "Страна";
+            this.col_region.HeaderText = "Страна происхождения";
             this.col_region.Name = "col_region";
             this.col_region.ReadOnly = true;
+            this.col_region.Width = 150;
             // 
             // show_materials_mol
             // 
@@ -85,6 +106,7 @@
             this.ClientSize = new System.Drawing.Size(611, 392);
             this.Controls.Add(this.dgv_table);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "show_materials_mol";

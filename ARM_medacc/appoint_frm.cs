@@ -25,7 +25,7 @@ namespace ARM_medacc
         {
             common.open_connect(connect);
             List<string> mols = new List<string>();
-            MySqlCommand molcommand = new MySqlCommand("select id, concat(last_name, \" \", name, \" \", patronymic) as mol from users where role_id = 2", connect);
+            MySqlCommand molcommand = new MySqlCommand("select id, concat(last_name, ' ', name, ' ', patronymic) as mol from users where role_id = 2", connect);
             MySqlDataReader molread = molcommand.ExecuteReader();
 
             while (molread.Read())
@@ -33,7 +33,7 @@ namespace ARM_medacc
 
             molread.Close();
 
-            string commandtext = "select * from materials t left join (select id, concat(last_name, \" \", name, \" \", patronymic) as mol from users) us on t.frp = us.id";
+            string commandtext = "select * from materials t left join (select id, concat(last_name, ' ', name, ' ', patronymic) as mol from users) us on t.frp = us.id where t.amount > 0";
             MySqlCommand command = new MySqlCommand(commandtext, connect);
             MySqlDataReader data = command.ExecuteReader();
             var source = new AutoCompleteStringCollection();
@@ -61,7 +61,7 @@ namespace ARM_medacc
             for (int i = 0; i < dgv_table.Rows.Count; ++i)
             {
                 MySqlCommand molcommand = new MySqlCommand(
-                    string.Format("UPDATE `materials` SET `frp`= (select id from users where concat(last_name, \" \", name, \" \", patronymic) = '{3}' limit 1) where description = '{0}' and region = '{1}' and measure = '{2}' and frp = (select id from users where concat(last_name, \" \", name, \" \", patronymic) = '{4}' limit 1)",
+                    string.Format("UPDATE `materials` SET `frp`= (select id from users where concat(last_name, ' ', name, ' ', patronymic) = '{3}' limit 1) where description = '{0}' and region = '{1}' and measure = '{2}' and frp = (select id from users where concat(last_name, ' ', name, ' ', patronymic) = '{4}' limit 1)",
                     dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
                      dgv_table.Rows[i].Cells[col_measure.Index].Value, (dgv_table.Rows[i].Cells[col_mol.Index] as DataGridViewComboBoxCell).Value, oldmol[i]), connect);
 

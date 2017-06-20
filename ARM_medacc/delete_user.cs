@@ -49,7 +49,6 @@ namespace ARM_medacc
             }
 
                         common.open_connect(connect);
-            var strs = (cb_fio.SelectedItem as string).Split(' ');
             MySqlCommand mycommand = new MySqlCommand(string.Format("delete from users where login = '{0}'", cb_tabnum.SelectedItem), connect);
             mycommand.ExecuteNonQuery();
                         common.close_connect(connect);

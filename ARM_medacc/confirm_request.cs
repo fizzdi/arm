@@ -122,8 +122,8 @@ namespace ARM_medacc
                     exsh.Cells[24, 22] = amount;
                     exsh.Cells[24, 26] = region;
 
-                    MySqlCommand com = new MySqlCommand(string.Format("update materials set amount = amount{0}{1} where description = '{2}' and measure = '{3}' and region = '{4}'",
-                        (rb_type_set.Checked ? "+" : "-"), amount, descr, meas, region), connect);
+                    MySqlCommand com = new MySqlCommand(string.Format("update materials set amount = amount{0}{1} where description = '{2}' and measure = '{3}' and region = '{4}' and frp = '{5}'",
+                        (rb_type_set.Checked ? "+" : "-"), amount, descr, meas, region, frp), connect);
                     if (com.ExecuteNonQuery() == 0)
                     {
                         com.CommandText = string.Format(

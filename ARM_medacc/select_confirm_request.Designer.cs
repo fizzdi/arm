@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(select_confirm_request));
             this.lb_reqs = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.but_edit = new System.Windows.Forms.Button();
@@ -36,10 +37,12 @@
             // 
             // lb_reqs
             // 
+            this.lb_reqs.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lb_reqs.FormattingEnabled = true;
-            this.lb_reqs.Location = new System.Drawing.Point(6, 19);
+            this.lb_reqs.ItemHeight = 21;
+            this.lb_reqs.Location = new System.Drawing.Point(6, 28);
             this.lb_reqs.Name = "lb_reqs";
-            this.lb_reqs.Size = new System.Drawing.Size(248, 173);
+            this.lb_reqs.Size = new System.Drawing.Size(248, 172);
             this.lb_reqs.TabIndex = 0;
             this.lb_reqs.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.lb_reqs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lb_reqs_MouseDoubleClick);
@@ -47,6 +50,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lb_reqs);
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(260, 208);
@@ -56,9 +60,10 @@
             // 
             // but_edit
             // 
+            this.but_edit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.but_edit.Location = new System.Drawing.Point(18, 226);
             this.but_edit.Name = "but_edit";
-            this.but_edit.Size = new System.Drawing.Size(248, 23);
+            this.but_edit.Size = new System.Drawing.Size(248, 55);
             this.but_edit.TabIndex = 2;
             this.but_edit.Text = "Выбрать";
             this.but_edit.UseVisualStyleBackColor = true;
@@ -68,10 +73,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(281, 293);
             this.Controls.Add(this.but_edit);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "select_confirm_request";
