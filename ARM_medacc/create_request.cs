@@ -178,9 +178,9 @@ namespace ARM_medacc
                 {
                     if (data2.Read())
                     {
-                        float count = data2.GetFloat("amount");
+                        int count = data2.GetInt32("amount");
 
-                        if (Math.Abs(count - int.Parse(dgv_table.Rows[i].Cells[col_count.Index].Value.ToString())) < 0.02)
+                        if (count < int.Parse(dgv_table.Rows[i].Cells[col_count.Index].Value.ToString()))
                         {
                             MessageBox.Show(string.Format("Не хватает материала зарегистрированного на вас! ({0}, {1}, {2})",
                                 dgv_table.Rows[i].Cells[col_material.Index].Value, dgv_table.Rows[i].Cells[col_region.Index].Value,
