@@ -38,7 +38,7 @@ namespace ARM_medacc
             {
                 dgv_table.Rows.Add();
                 dgv_table.Rows[i].Cells[col_material.Index].Value = data.GetString("description");
-                dgv_table.Rows[i].Cells[col_count.Index].Value = data.GetString("amount");
+                dgv_table.Rows[i].Cells[col_count.Index].Value = data.GetInt32("amount");
                 dgv_table.Rows[i].Cells[col_region.Index].Value = data.GetString("region");
                 dgv_table.Rows[i].Cells[col_measure.Index].Value = data.GetString("measure");
                 i++;
