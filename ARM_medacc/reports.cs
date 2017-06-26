@@ -40,7 +40,7 @@ namespace ARM_medacc
             exsh.Cells[9, 62] = DateTime.Now.ToString("dd.MM.yyyy");
             exsh.Cells[8, 10] = NameReport;
 
-            command.CommandText = string.Format("SELECT description, region, measure, SUM(amount)AS amount FROM  `materials` GROUP BY description, region, measure {0}ORDER BY description DESC", 
+            command.CommandText = string.Format("SELECT description, region, measure, SUM(amount)AS amount FROM  `materials` GROUP BY description, region, measure {0}ORDER BY amount asc, description desc", 
                 (check ? "HAVING amount > 0 " : ""));
 
             MySqlDataReader data = command.ExecuteReader();
@@ -83,7 +83,7 @@ namespace ARM_medacc
             exsh.Cells[9, 62] = DateTime.Now.ToString("dd.MM.yyyy");
             exsh.Cells[8, 10] = NameReport;
 
-            command.CommandText = "SELECT description, amount, measure, region, us.frp as frp FROM `materials` LEFT JOIN (SELECT id, CONCAT(last_name, ' ', name, ' ', patronymic) frp FROM users) us ON us.id = materials.frp";
+            command.CommandText = "SELECT description, amount, measure, region, us.frp as frp FROM `materials` LEFT JOIN (SELECT id, CONCAT(last_name, ' ', name, ' ', patronymic) frp FROM users) us ON us.id = materials.frp order by materials.amount asc";
             if (check)
                 command.CommandText += " WHERE amount >0";
 
