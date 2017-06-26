@@ -22,6 +22,15 @@ namespace ARM_medacc
             cb_grant.SelectedIndex = 0;
         }
 
+
+        private bool checknum(string s)
+        {
+            for (int i = 0; i < s.Length; ++i)
+                if (Char.IsDigit(s[i]))
+                    return true;
+            return false;
+        }
+
         private void bt_save_Click(object sender, EventArgs e)
         {
             if (common.check_textbox(tb_tablnum, "Введите табельный номер!", "Внимание"))
@@ -38,6 +47,12 @@ namespace ARM_medacc
 
             if (common.check_textbox(tb_patronymic, "Введите отчество!", "Внимание"))
                 return;
+
+            if (checknum(tb_lastname.Text) || checknum(tb_name.Text) || checknum(tb_patronymic.Text))
+            {
+                MessageBox.Show("Нельзя использовать цифры в ФИО!");
+                return;
+            }
 
                         common.open_connect(connect);
             MySqlCommand mycommand = new MySqlCommand(string.Format("select * from users where login = '{0}'", tb_tablnum.Text), connect);
